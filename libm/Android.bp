@@ -418,7 +418,6 @@ cc_library {
         "-Wno-unused-const-variable",
         "-Wno-unused-variable",
         "-ffp-contract=fast",
-        "-O3",
     ],
 
     ldflags: [
@@ -459,10 +458,6 @@ cc_library {
         "//apex_available:platform",
         "com.android.runtime",
     ],
-
-    lto: {
-        never: true,
-    },
 }
 
 ndk_library {

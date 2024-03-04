@@ -416,8 +416,11 @@ cc_binary {
                 "liblinker_debuggerd_stub",
             ],
         },
+        android_arm64: {
+            cflags: ["-fsplit-machine-functions"],
+            ldflags: ["-fsplit-machine-functions"],
+        },
     },
-
     afdo: true,
 }
 
@@ -505,10 +508,6 @@ cc_library {
         "//apex_available:platform",
         "com.android.runtime",
     ],
-
-    lto: {
-        never: true,
-    },
 }
 
 cc_test {

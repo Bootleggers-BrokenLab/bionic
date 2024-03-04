@@ -130,10 +130,6 @@ cc_defaults {
             cflags: ["-DUSE_SCUDO"],
         },
     },
-
-    lto: {
-        never: true,
-    },
 }
 
 libc_scudo_product_variables = {
@@ -1406,6 +1402,9 @@ cc_library_static {
         },
     },
     name: "libc_syscalls",
+    lto: {
+        never: true,
+    },
 }
 
 // ========================================================
@@ -1660,6 +1659,9 @@ cc_library_static {
         "libc_init_static",
         "libc_unwind_static",
     ],
+    lto: {
+        never: true,
+    },
 }
 
 filegroup {
@@ -1759,6 +1761,10 @@ cc_defaults {
     static_libs: [
         "libdl_android",
     ],
+
+    lto: {
+        never: true,
+    },
 
     nocrt: true,
 
@@ -2289,6 +2295,8 @@ cc_object {
         "bionic", // crtbegin.c includes bionic/libc_init_common.h
     ],
 
+    cflags: [ "-DCRTBEGIN_STATIC", ],
+
     srcs: ["arch-common/bionic/crtbegin.c"],
     objs: [
         "crtbrand",
@@ -2341,7 +2349,9 @@ cc_library_static {
       }
     },
     sdk_version: "minimum",
-
+    lto: {
+        thin: true,
+    },
     defaults: ["crt_and_memtag_defaults"],
 }
 
@@ -2353,7 +2363,9 @@ cc_library_static {
       }
     },
     sdk_version: "minimum",
-
+    lto: {
+        thin: true,
+    },
     defaults: ["crt_and_memtag_defaults"],
 }
 
